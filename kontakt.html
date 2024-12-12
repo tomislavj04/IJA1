@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Contact Form</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding-bottom: 30vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="aboutUs.html">About Us</a></li>
+        <li><a href="options.html">Options</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+
+    <form class="kontakt-forma">
+      <h2>Potvrdi kupovinu</h2>
+
+      <label>Ime:</label>
+      <input type="text" placeholder="Enter your first name" />
+
+      <label for="last-name">Prezime:</label>
+      <input type="text" placeholder="Enter your last name" />
+
+      <label for="phone">Broj telefona:</label>
+      <input type="tel" placeholder="Enter your phone number" />
+
+      <label for="card-number">Broj kartice:</label>
+      <input type="text" placeholder="Enter your card number" />
+
+      <label for="expiry-date">Datum isticanja (MM/DD/YY):</label>
+      <input type="date" placeholder="MM/YY" />
+
+      <label for="address">Adresa:</label>
+      <textarea placeholder="Enter your address" rows="3"></textarea>
+
+      <label>Pol:</label>
+      <div class="radio-group">
+        <label
+          ><input type="radio" name="gender" value="male" required />
+          Muško</label
+        >
+        <label
+          ><input type="radio" name="gender" value="female" required />
+          Žensko</label
+        >
+      </div>
+
+      <label>Kako želite dobiti obaveštenje:</label>
+      <div class="checkbox-group">
+        <label
+          ><input type="checkbox" name="notification" value="email" />
+          Email</label
+        >
+        <label
+          ><input type="checkbox" name="notification" value="phone" />
+          Telefon</label
+        >
+        <label
+          ><input type="checkbox" name="notification" value="address" />
+          Adresa</label
+        >
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>

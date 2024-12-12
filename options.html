@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BMW X7 Options</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        margin-top: 5vh;
+        padding: 20px;
+      }
+      .images {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+      .images img {
+        width: 24%;
+        border-radius: 10px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid #ddd;
+      }
+      th,
+      td {
+        padding: 10px;
+        text-align: center;
+      }
+      td{
+        background-color: #686a6c;
+        color: black;
+      }
+      th {
+        background-color: #f4f4f4;
+      }
+      .radio-options,
+      .checkbox-options {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+      }
+    </style>
+        <script>
+          document.addEventListener('DOMContentLoaded', () => {
+              let basePrice = 75000;
+  
+              const rows = document.querySelectorAll('tbody tr');
+  
+              rows.forEach((row, rowIndex) => {
+                  const wheelOptions = row.querySelectorAll(`input[name="wheels-row${rowIndex + 1}"]`);
+                  const colorOptions = row.querySelectorAll(`input[name="color-row${rowIndex + 1}"]`);
+                  const featureOptions = row.querySelectorAll(`input[name^="features-row${rowIndex + 1}"]`);
+                  const finalPriceCell = row.lastElementChild;
+  
+                  const calculatePrice = () => {
+                      let finalPrice = basePrice;
+  
+                      wheelOptions.forEach(option => {
+                          if (option.checked) {
+                              if (option.value === '21') finalPrice += 1100;
+                              else if (option.value === '22') finalPrice += 1850;
+                          }
+                      });
+  
+                      colorOptions.forEach(option => {
+                          if (option.checked) {
+                              if (option.value === 'two-tone') finalPrice += 8400;
+                          }
+                      });
+
+                      featureOptions.forEach(option => {
+                          if (option.checked) finalPrice += 2783;
+                      });
+  
+                      finalPriceCell.textContent = `$${finalPrice.toLocaleString()}`;
+                  };
+  
+
+                  if (wheelOptions.length > 0) wheelOptions[0].checked = true; 
+                  if (colorOptions.length > 1) colorOptions[1].checked = true; 
+  
+                  wheelOptions.forEach(option => option.addEventListener('change', calculatePrice));
+                  colorOptions.forEach(option => option.addEventListener('change', calculatePrice));
+                  featureOptions.forEach(option => option.addEventListener('change', calculatePrice));
+  
+                  calculatePrice();
+              });
+  
+              window.updateBasePrice = (newPrice) => {
+                  basePrice = parseInt(newPrice, 10) || 75000;
+                  rows.forEach(row => {
+                      const event = new Event('change');
+                      row.querySelector('input[type="radio"]').dispatchEvent(event);
+                  });
+              };
+          });
+      </script>
+      <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <nav class="navbar">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="aboutUs.html">About Us</a></li>
+        <li><a href="#">Options</a></li>
+        <li><a href="kontakt.html">Contact</a></li>
+      </ul>
+    </nav>
+
+
+    <div class="container">
+      <h1>BMW X7 Options</h1>
+
+      <div class="images">
+        <img src="slike/x7.jpeg" alt="BMW X7 Front View" />
+        <img src="slike/x7headlight.jpg" alt="BMW X7 Headlight" />
+        <img src="slike/x7interior.jpg" alt="BMW X7 Interior" />
+        <img src="slike/x7rear.jpg" alt="BMW X7 Rear View" />
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>Tip Goriva</th>
+            <th>Agregat / KS</th>
+            <th>Osnovna Cena</th>
+            <th>Felne</th>
+            <th>Boja</th>
+            <th>Oprema</th>
+            <th>Konačna Cena</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td>BMW X7m30d</td>
+            <td>Diesel</td>
+            <td>3.0L / 164hp</td>
+            <td>$<span id="basePriceDisplay">75,000</span></td>
+            <td>
+              <div class="radio-options">
+                <label
+                  ><input type="radio" name="wheels-row1" value="20" />
+                  20</label
+                >
+                <label
+                  ><input type="radio" name="wheels-row1" value="21" />
+                  21</label
+                >
+                <label
+                  ><input type="radio" name="wheels-row1" value="22" />
+                  22</label
+                >
+              </div>
+            </td>
+            <td>
+              <div class="radio-options">
+                <label
+                  ><input type="radio" name="color-row1" value="two-tone" /> Two
+                  Tone</label
+                >
+                <label
+                  ><input type="radio" name="color-row1" value="metallic" />
+                  Metallic</label
+                >
+              </div>
+            </td>
+            <td>
+              <div class="checkbox-options">
+                <label
+                  ><input
+                    type="checkbox"
+                    name="features-row1"
+                    value="m-packet"
+                  />
+                  M Packet</label
+                >
+                <label
+                  ><input type="checkbox" name="features-row1" value="swiss" />
+                  Swiss</label
+                >
+                <label
+                  ><input
+                    type="checkbox"
+                    name="features-row1"
+                    value="massage"
+                  />
+                  Massage</label
+                >
+                <label
+                  ><input
+                    type="checkbox"
+                    name="features-row1"
+                    value="alcantara"
+                  />
+                  Alcantara</label
+                >
+              </div>
+            </td>
+            <td></td>
+          </tr>
+          
+          <td>BMW X7 40d</td>
+            <td>Diesel</td>
+            <td>3.0L / 220hp</td>
+            <td>$<span id="basePriceDisplay">81,000</span></td>
+            <td>
+              <div class="radio-options">
+                <label
+                  ><input type="radio" name="wheels-row2" value="20" />
+                  20</label
+                >
+                <label
+                  ><input type="radio" name="wheels-row2" value="21" />
+                  21</label
+                >
+                <label
+                  ><input type="radio" name="wheels-row2" value="22" />
+                  22</label
+                >
+              </div>
+            </td>
+            <td>
+              <div class="radio-options">
+                <label
+                  ><input type="radio" name="color-row2" value="two-tone" /> Two
+                  Tone</label
+                >
+                <label
+                  ><input type="radio" name="color-row2" value="metallic" />
+                  Metallic</label
+                >
+              </div>
+            </td>
+            <td>
+              <div class="checkbox-options">
+                <label
+                  ><input
+                    type="checkbox"
+                    name="features-row1"
+                    value="m-packet"
+                  />
+                  M Packet</label
+                >
+                <label
+                  ><input type="checkbox" name="features-row1" value="swiss" />
+                  Swiss</label
+                >
+                <label
+                  ><input
+                    type="checkbox"
+                    name="features-row1"
+                    value="massage"
+                  />
+                  Massage</label
+                >
+                <label
+                  ><input
+                    type="checkbox"
+                    name="features-row1"
+                    value="alcantara"
+                  />
+                  Alcantara</label
+                >
+              </div>
+            </td>
+            <td></td>
+          </tr>
+          <td>BMW X7 m50d</td>
+            <td>Diesel</td>
+            <td>3.5L / 435hp</td>
+            <td>$92,000</td>
+            <td>
+              <div class="radio-options">
+                <label
+                  ><input type="radio" name="wheels-row3" value="20" />
+                  20</label
+                >
+                <label
+                  ><input type="radio" name="wheels-row3" value="21" />
+                  21</label
+                >
+                <label
+                  ><input type="radio" name="wheels-row3" value="22" />
+                  22</label
+                >
+              </div>
+            </td>
+            <td>
+              <div class="radio-options">
+                <label
+                  ><input type="radio" name="color-row3" value="two-tone" /> Two
+                  Tone</label
+                >
+                <label
+                  ><input type="radio" name="color-row3" value="metallic" />
+                  Metallic</label
+                >
+              </div>
+            </td>
+            <td>
+              <div class="checkbox-options">
+                <label
+                  ><input
+                    type="checkbox"
+                    name="features-row1"
+                    value="m-packet"
+                  />
+                  M Packet</label
+                >
+                <label
+                  ><input type="checkbox" name="features-row1" value="swiss" />
+                  Swiss</label
+                >
+                <label
+                  ><input
+                    type="checkbox"
+                    name="features-row1"
+                    value="massage"
+                  />
+                  Massage</label
+                >
+                <label
+                  ><input
+                    type="checkbox"
+                    name="features-row1"
+                    value="alcantara"
+                  />
+                  Alcantara</label
+                >
+              </div>
+            </td>
+            <td></td>
+          </tr>
+          <td>BMW X7 30i</td>
+            <td>Gasoline</td>
+            <td>3.0L / 185hp</td>
+            <td>$77,000</td>
+            <td>
+              <div class="radio-options">
+                <label
+                  ><input type="radio" name="wheels-row4" value="20" />
+                  20</label
+                >
+                <label
+                  ><input type="radio" name="wheels-row4" value="21" />
+                  21</label
+                >
+                <label
+                  ><input type="radio" name="wheels-row4" value="22" />
+                  22</label
+                >
+              </div>
+            </td>
+            <td>
+              <div class="radio-options">
+                <label
+                  ><input type="radio" name="color-row4" value="two-tone" /> Two
+                  Tone</label
+                >
+                <label
+                  ><input type="radio" name="color-row4" value="metallic" />
+                  Metallic</label
+                >
+              </div>
+            </td>
+            <td>
+              <div class="checkbox-options">
+                <label
+                  ><input
+                    type="checkbox"
+                    name="features-row1"
+                    value="m-packet"
+                  />
+                  M Packet</label
+                >
+                <label
+                  ><input type="checkbox" name="features-row1" value="swiss" />
+                  Swiss</label
+                >
+                <label
+                  ><input
+                    type="checkbox"
+                    name="features-row1"
+                    value="massage"
+                  />
+                  Massage</label
+                >
+                <label
+                  ><input
+                    type="checkbox"
+                    name="features-row1"
+                    value="alcantara"
+                  />
+                  Alcantara</label
+                >
+              </div>
+            </td>
+            <td></td>
+          </tr>
+          <td>BMW X7 40i</td>
+            <td>Gasoline</td>
+            <td>3.5L / 267hp</td>
+            <td>$84,999</td>
+            <td>
+              <div class="radio-options">
+                <label
+                  ><input type="radio" name="wheels-row5" value="20" />
+                  20</label
+                >
+                <label
+                  ><input type="radio" name="wheels-row5" value="21" />
+                  21</label
+                >
+                <label
+                  ><input type="radio" name="wheels-row5" value="22" />
+                  22</label
+                >
+              </div>
+            </td>
+            <td>
+              <div class="radio-options">
+                <label
+                  ><input type="radio" name="color-row5" value="two-tone" /> Two
+                  Tone</label
+                >
+                <label
+                  ><input type="radio" name="color-row5" value="metallic" />
+                  Metallic</label
+                >
+              </div>
+            </td>
+            <td>
+              <div class="checkbox-options">
+                <label
+                  ><input
+                    type="checkbox"
+                    name="features-row1"
+                    value="m-packet"
+                  />
+                  M Packet</label
+                >
+                <label
+                  ><input type="checkbox" name="features-row1" value="swiss" />
+                  Swiss</label
+                >
+                <label
+                  ><input
+                    type="checkbox"
+                    name="features-row1"
+                    value="massage"
+                  />
+                  Massage</label
+                >
+                <label
+                  ><input
+                    type="checkbox"
+                    name="features-row1"
+                    value="alcantara"
+                  />
+                  Alcantara</label
+                >
+              </div>
+            </td>
+            <td></td>
+          </tr>
+          <td>BMW X7M</td>
+            <td>Gasoline</td>
+            <td>4.2L / 640hp</td>
+            <td>$124,999</td>
+            <td>
+              <div class="radio-options">
+                <label
+                  ><input type="radio" name="wheels-row6" value="21" />
+                  21</label
+                >
+                <label
+                  ><input type="radio" name="wheels-row6" value="22" />
+                  22</label
+                >
+              </div>
+            </td>
+            <td>
+              <div class="radio-options">
+                <label
+                  ><input type="radio" name="color-row6" value="two-tone" /> Two
+                  Tone</label
+                >
+                <label
+                  ><input type="radio" name="color-row6" value="metallic" />
+                  Metallic</label
+                >
+              </div>
+            </td>
+            <td>
+              <div class="checkbox-options">
+                <label
+                  ><input
+                    type="checkbox"
+                    name="features-row1"
+                    value="m-packet"
+                  />
+                  M Packet</label
+                >
+                <label
+                  ><input type="checkbox" name="features-row1" value="swiss" />
+                  Swiss</label
+                >
+                <label
+                  ><input
+                    type="checkbox"
+                    name="features-row1"
+                    value="massage"
+                  />
+                  Massage</label
+                >
+                <label
+                  ><input
+                    type="checkbox"
+                    name="features-row1"
+                    value="alcantara"
+                  />
+                  Alcantara</label
+                >
+              </div>
+            </td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="potvrda"><a href="kontakt.html">Potvrdi izabrani model</a></button>
+    </div>
+
+
+
+    <footer>
+      <p>&copy; 2024 BMW. Sva prava zadržana.</p>
+    </footer>
+  </body>
+</html>
